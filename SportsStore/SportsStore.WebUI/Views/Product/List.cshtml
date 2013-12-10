@@ -6,11 +6,7 @@
 
 @foreach (var item in Model.Products)
 {
-    <div class="item">
-        <h3>@item.Name</h3>
-        @item.Description
-        <h4>@item.Price.ToString("c")</h4>
-    </div>
+    Html.RenderPartial("ProductSummary", item);
 }
 
 <div class="pager">
