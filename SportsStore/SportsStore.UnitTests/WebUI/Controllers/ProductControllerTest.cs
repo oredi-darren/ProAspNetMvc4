@@ -20,17 +20,17 @@ namespace SportsStore.UnitTests.WebUI.Controllers
         {
             var mock = new Mock<IProductRepository>();
             mock.Setup(m => m.Products).Returns(new List<Product> {
-                    new Product { ProductId = 1, Name = "P1" },
-                    new Product { ProductId = 2, Name = "P2" },
-                    new Product { ProductId = 3, Name = "P3" },
-                    new Product { ProductId = 4, Name = "P4" },
-                    new Product { ProductId = 5, Name = "P5" }
+                    new Product { ProductID = 1, Name = "P1" },
+                    new Product { ProductID = 2, Name = "P2" },
+                    new Product { ProductID = 3, Name = "P3" },
+                    new Product { ProductID = 4, Name = "P4" },
+                    new Product { ProductID = 5, Name = "P5" }
                 }.AsQueryable());
 
-            var controller = new ProductController(mock.Object);
-            controller.PageSize = 3;
+            var target = new ProductController(mock.Object);
+            target.PageSize = 3;
 
-            var result = controller.List(null, 2).Model as ProductListViewModel;
+            var result = target.List(null, 2).Model as ProductListViewModel;
             var array = result.Products.ToArray();
             Assert.IsTrue(array.Length == 2);
             Assert.AreEqual(array[0].Name, "P4");
@@ -42,7 +42,7 @@ namespace SportsStore.UnitTests.WebUI.Controllers
         {
             // Arrange - define an HTML helper - we need to do this
             // in order to apply the extension method
-            var helper = default(HtmlHelper);
+            var target = default(HtmlHelper);
 
             // Arrange - create the PagingInfo data
             var pagingInfo = new PagingInfo { 
@@ -55,7 +55,7 @@ namespace SportsStore.UnitTests.WebUI.Controllers
             Func<int, string> pageUrlDelegate = i => "Page" + i;
 
             // Act
-            var result = helper.PageLinks(pagingInfo, pageUrlDelegate);
+            var result = target.PageLinks(pagingInfo, pageUrlDelegate);
 
             // Assert
             Assert.AreEqual(result.ToString(), @"<a href=""Page1"">1</a>"
@@ -69,19 +69,19 @@ namespace SportsStore.UnitTests.WebUI.Controllers
             // Arrange
             var mock = new Mock<IProductRepository>();
             mock.Setup(m => m.Products).Returns(new List<Product> {
-                    new Product { ProductId = 1, Name = "P1" },
-                    new Product { ProductId = 2, Name = "P2" },
-                    new Product { ProductId = 3, Name = "P3" },
-                    new Product { ProductId = 4, Name = "P4" },
-                    new Product { ProductId = 5, Name = "P5" }
+                    new Product { ProductID = 1, Name = "P1" },
+                    new Product { ProductID = 2, Name = "P2" },
+                    new Product { ProductID = 3, Name = "P3" },
+                    new Product { ProductID = 4, Name = "P4" },
+                    new Product { ProductID = 5, Name = "P5" }
                 }.AsQueryable());
 
             // Arrange
-            var controller = new ProductController(mock.Object);
-            controller.PageSize = 3;
+            var target = new ProductController(mock.Object);
+            target.PageSize = 3;
 
             // Act
-            var result = controller.List(null, 2).Model as ProductListViewModel;
+            var result = target.List(null, 2).Model as ProductListViewModel;
 
             // Assert
             var pageInfo = result.PagingInfo;
@@ -98,19 +98,19 @@ namespace SportsStore.UnitTests.WebUI.Controllers
             // - create the mock repository
             var mock = new Mock<IProductRepository>();
             mock.Setup(m => m.Products).Returns(new List<Product> {
-                    new Product { ProductId = 1, Name = "P1", Category = "Cat1" },
-                    new Product { ProductId = 2, Name = "P2", Category = "Cat2" },
-                    new Product { ProductId = 3, Name = "P3", Category = "Cat1" },
-                    new Product { ProductId = 4, Name = "P4", Category = "Cat2" },
-                    new Product { ProductId = 5, Name = "P5", Category = "Cat3" }
+                    new Product { ProductID = 1, Name = "P1", Category = "Cat1" },
+                    new Product { ProductID = 2, Name = "P2", Category = "Cat2" },
+                    new Product { ProductID = 3, Name = "P3", Category = "Cat1" },
+                    new Product { ProductID = 4, Name = "P4", Category = "Cat2" },
+                    new Product { ProductID = 5, Name = "P5", Category = "Cat3" }
                 }.AsQueryable());
 
             // Arrange - create a controller and make the page size 3 items
-            var controller = new ProductController(mock.Object);
-            controller.PageSize = 3;
+            var target = new ProductController(mock.Object);
+            target.PageSize = 3;
 
             // Action
-            var result = (controller.List("Cat2", 1).Model as ProductListViewModel).Products.ToArray();
+            var result = (target.List("Cat2", 1).Model as ProductListViewModel).Products.ToArray();
 
             // Assert
             Assert.AreEqual(2, result.Length);
@@ -125,22 +125,22 @@ namespace SportsStore.UnitTests.WebUI.Controllers
             // - create the mock repository
             var mock = new Mock<IProductRepository>();
             mock.Setup(m => m.Products).Returns(new List<Product> {
-                    new Product { ProductId = 1, Name = "P1", Category = "Cat1" },
-                    new Product { ProductId = 2, Name = "P2", Category = "Cat2" },
-                    new Product { ProductId = 3, Name = "P3", Category = "Cat1" },
-                    new Product { ProductId = 4, Name = "P4", Category = "Cat2" },
-                    new Product { ProductId = 5, Name = "P5", Category = "Cat3" }
+                    new Product { ProductID = 1, Name = "P1", Category = "Cat1" },
+                    new Product { ProductID = 2, Name = "P2", Category = "Cat2" },
+                    new Product { ProductID = 3, Name = "P3", Category = "Cat1" },
+                    new Product { ProductID = 4, Name = "P4", Category = "Cat2" },
+                    new Product { ProductID = 5, Name = "P5", Category = "Cat3" }
                 }.AsQueryable());
 
             // Arrange - create a controller and make the page size 3 items
-            var controller = new ProductController(mock.Object);
-            controller.PageSize = 3;
+            var target = new ProductController(mock.Object);
+            target.PageSize = 3;
 
             // Action
-            var count1 = (controller.List("Cat1").Model as ProductListViewModel).PagingInfo.TotalItems;
-            var count2 = (controller.List("Cat2").Model as ProductListViewModel).PagingInfo.TotalItems;
-            var count3 = (controller.List("Cat3").Model as ProductListViewModel).PagingInfo.TotalItems;
-            var countAll = (controller.List(null).Model as ProductListViewModel).PagingInfo.TotalItems;
+            var count1 = (target.List("Cat1").Model as ProductListViewModel).PagingInfo.TotalItems;
+            var count2 = (target.List("Cat2").Model as ProductListViewModel).PagingInfo.TotalItems;
+            var count3 = (target.List("Cat3").Model as ProductListViewModel).PagingInfo.TotalItems;
+            var countAll = (target.List(null).Model as ProductListViewModel).PagingInfo.TotalItems;
 
             // Assert
 

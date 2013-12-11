@@ -19,17 +19,17 @@ namespace SportsStore.UnitTests.WebUI.Controllers
             // - create the mock repository
             var mock = new Mock<IProductRepository>();
             mock.Setup(m => m.Products).Returns(new List<Product> {
-                    new Product { ProductId = 1, Name = "P1", Category = "Apples" },
-                    new Product { ProductId = 2, Name = "P2", Category = "Apples" },
-                    new Product { ProductId = 3, Name = "P3", Category = "Plums" },
-                    new Product { ProductId = 4, Name = "P4", Category = "Oranges" }
+                    new Product { ProductID = 1, Name = "P1", Category = "Apples" },
+                    new Product { ProductID = 2, Name = "P2", Category = "Apples" },
+                    new Product { ProductID = 3, Name = "P3", Category = "Plums" },
+                    new Product { ProductID = 4, Name = "P4", Category = "Oranges" }
                 }.AsQueryable());
 
             // Arrange - create a controller
-            var controller = new NavController(mock.Object);
+            var target = new NavController(mock.Object);
 
             // Action
-            var result = (controller.Menu().Model as IEnumerable<string>).ToArray();
+            var result = (target.Menu().Model as IEnumerable<string>).ToArray();
 
             // Assert
             Assert.AreEqual(3, result.Length);
@@ -45,20 +45,20 @@ namespace SportsStore.UnitTests.WebUI.Controllers
             // - create the mock repository
             var mock = new Mock<IProductRepository>();
             mock.Setup(m => m.Products).Returns(new List<Product> {
-                    new Product { ProductId = 1, Name = "P1", Category = "Apples" },
-                    new Product { ProductId = 2, Name = "P2", Category = "Apples" },
-                    new Product { ProductId = 3, Name = "P3", Category = "Plums" },
-                    new Product { ProductId = 4, Name = "P4", Category = "Oranges" }
+                    new Product { ProductID = 1, Name = "P1", Category = "Apples" },
+                    new Product { ProductID = 2, Name = "P2", Category = "Apples" },
+                    new Product { ProductID = 3, Name = "P3", Category = "Plums" },
+                    new Product { ProductID = 4, Name = "P4", Category = "Oranges" }
                 }.AsQueryable());
 
             // Arrange - create a controller
-            var controller = new NavController(mock.Object);
+            var target = new NavController(mock.Object);
 
             // Arrange - define the category to select
             string categoryToSelect = "Apples";
 
             // Action
-            var result = controller.Menu(categoryToSelect).ViewBag.SelectedCategory;
+            var result = target.Menu(categoryToSelect).ViewBag.SelectedCategory;
 
             // Assert
             Assert.AreEqual(categoryToSelect, result);

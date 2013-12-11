@@ -99,6 +99,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\Entities\CartTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebUI\Controllers\NavControllerTest.cs" />
     <Compile Include="WebUI\Controllers\ProductControllerTest.cs" />
