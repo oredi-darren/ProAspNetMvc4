@@ -10,7 +10,7 @@ using SportsStore.WebUI.Controllers;
 namespace SportsStore.UnitTests.WebUI.Controllers
 {
     [TestClass]
-    public class NavControllerTest
+    public class NavControllerTests
     {
         [TestMethod]
         public void Can_Create_Categories()

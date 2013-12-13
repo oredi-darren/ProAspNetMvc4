@@ -5,7 +5,7 @@ using System.Linq;
 namespace SportsStore.UnitTests.Domain.Entities
 {
     [TestClass]
-    public class CartTest
+    public class CartTests
     {
         [TestMethod]
         public void Can_Add_New_Lines()
