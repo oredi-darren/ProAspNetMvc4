@@ -16,6 +16,52 @@ namespace SportsStore.UnitTests.WebUI.Controllers
     public class ProductControllerTests
     {
         [TestMethod]
+        public void Cannnot_Retrieve_Image_Data_For_Invalid_ID()
+        {
+            // Arrange - create the mock repository
+            var mock = new Mock<IProductRepository>();
+            mock.Setup(m => m.Products).Returns(new Product[] { 
+                new Product { ProductID = 1, Name = "P1" },
+                new Product { ProductID = 2, Name = "P2" }
+            }.AsQueryable());
+
+            // Arrange - create a controller
+            var target = new ProductController(mock.Object);
+
+            // Act - call the GetImage action method
+            var result = target.GetImage(100);
+
+            // Assert
+            Assert.IsNull(result);
+        }
+
+        [TestMethod]
+        public void Can_Retrieve_Image_Data()
+        {
+            // Arrange - create a product with image data
+            var product = new Product { ProductID = 2, Name = "Test", ImageData = new byte[] { }, ImageMimeType = "image/png" };
+
+            // Arrange - create the mock repository
+            var mock = new Mock<IProductRepository>();
+            mock.Setup(m => m.Products).Returns(new Product[] { 
+                new Product { ProductID = 1, Name = "P1" },
+                product, 
+                new Product { ProductID = 3, Name = "P3" }
+            }.AsQueryable());
+
+            // Arrange - create a controller
+            var target = new ProductController(mock.Object);
+
+            // Act - call the GetImage action method
+            var result = target.GetImage(2);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(FileResult));
+            Assert.AreEqual(product.ImageMimeType, (result as FileResult).ContentType);
+        }
+
+        [TestMethod]
         public void Can_Paginate()
         {
             var mock = new Mock<IProductRepository>();

@@ -101,6 +101,7 @@
   <ItemGroup>
     <Compile Include="Domain\Entities\CartTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebUI\Controllers\AccountControllerTests.cs" />
     <Compile Include="WebUI\Controllers\AdminControllerTests.cs" />
     <Compile Include="WebUI\Controllers\CartControllerTests.cs" />
     <Compile Include="WebUI\Controllers\NavControllerTests.cs" />
