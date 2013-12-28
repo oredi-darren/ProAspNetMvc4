@@ -1,9 +1,4 @@
-﻿using ControllersAndActions.Infrastructure;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace ControllersAndActions.Controllers
 {
@@ -20,15 +15,16 @@ namespace ControllersAndActions.Controllers
 
         public ActionResult ProduceOutput()
         {
-            if (Server.MachineName.ToLower() == "darren-windows")
-            {
-                return new CustomRedirectResult { Url = "/Basic/Index" };
-            }
-            else
-            {
-                Response.Write("Controller: Derived, Action: ProductOutput");
-                return null;
-            }
+            //if (Server.MachineName.ToLower() == "darren-windows")
+            //{
+            //    return new CustomRedirectResult { Url = "/Basic/Index" };
+            //}
+            //else
+            //{
+            //    Response.Write("Controller: Derived, Action: ProductOutput");
+            //    return null;
+            //}
+            return Redirect("/Basic/Index");
         }
     }
 }
