@@ -27,5 +27,19 @@ namespace Filters.Controllers
 
             return string.Format("The id value is: {0}", id);
         }
+
+        [CustomAction]
+        public string FilterTest()
+        {
+            return "This is the ActionFilterTest action";
+        }
+
+        [ProfileAction]
+        [ProfileResult]
+        [ProfileAll]
+        public string ProfileActionFilterTest()
+        {
+            return "This is the ProfileActionFilterTest action";
+        }
     }
 }

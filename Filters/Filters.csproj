@@ -110,12 +110,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\CustomActionAttribute.cs" />
     <Compile Include="Infrastructure\CustomAuthAttribute.cs" />
+    <Compile Include="Infrastructure\ProfileActionAttribute.cs" />
+    <Compile Include="Infrastructure\ProfileAllAttribute.cs" />
+    <Compile Include="Infrastructure\ProfileResultAttribute.cs" />
     <Compile Include="Infrastructure\RangeExceptionAttribute.cs" />
+    <Compile Include="Infrastructure\SelectiveCacheController.cs" />
+    <Compile Include="Infrastructure\SimpleMessageAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -142,6 +149,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\RangeError.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\SelectiveCache\ChildAction.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\SelectiveCache\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
