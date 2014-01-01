@@ -1,0 +1,23 @@
+﻿@model HelperMethods.Models.Person
+
+@{
+    ViewBag.Title = "ComplexUsingBeginForm";
+}
+
+<h2>ComplexUsingBeginForm</h2>
+@using (Html.BeginForm("CreatePerson", "Home", new { id = "MyIdValue" }, FormMethod.Post, new {  @class = "personClass", data_formType="person"}))
+{
+    <div class="dataElem">
+        <label>PersonId</label>
+        <input name="PersonId" value="@Model.PersonId" />
+    </div>
+    <div class="dataElem">
+        <label>First Name</label>
+        <input name="FirstName" value="@Model.FirstName" />
+    </div>
+    <div class="dataElem">
+        <label>Last Name</label>
+        <input name="LastName" value="@Model.LastName" />
+    </div>
+    <input type="submit" value="Submit" />
+}

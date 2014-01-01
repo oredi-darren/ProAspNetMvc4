@@ -1,0 +1,22 @@
+﻿@model HelperMethods.Models.Person
+
+@{
+    ViewBag.Title = "BasicBeginForm";
+}
+
+<h2>BasicBeginForm</h2>
+@{ Html.BeginForm(); }
+    <div class="dataElem">
+        <label>PersonId</label>
+        <input name="PersonId" value="@Model.PersonId" />
+    </div>
+    <div class="dataElem">
+        <label>First Name</label>
+        <input name="FirstName" value="@Model.FirstName" />
+    </div>
+    <div class="dataElem">
+        <label>Last Name</label>
+        <input name="LastName" value="@Model.LastName" />
+    </div>
+    <input type="submit" value="Submit" />
+@{Html.EndForm();}
