@@ -1,0 +1,12 @@
+﻿@using UrlAjaxHelperMethods.Models
+
+@model IEnumerable<Person>
+
+@foreach (var person in Model)
+{
+    <tr>
+        <td>@person.FirstName</td>
+        <td>@person.LastName</td>
+        <td>@person.Role</td>
+    </tr>
+}

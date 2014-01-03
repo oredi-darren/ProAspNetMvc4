@@ -1,0 +1,15 @@
+﻿@model UrlAjaxHelperMethods.Models.Person
+
+@{
+    ViewBag.Title = "ModelCreatePerson";
+    Html.EnableClientValidation(false);
+}
+
+<h2>ModelCreatePerson: @Html.LabelForModel()</h2>
+
+@using (Html.BeginRouteForm("FormRoute", new { }, FormMethod.Post, new { @class = "personClass", data_formType = "person" }))
+{
+    <div class="column">@Html.EditorForModel()</div>
+    <div class="column">@Html.EditorFor(m => m.HomeAddress)</div>
+    <input type="submit" value="Submit" />
+}
